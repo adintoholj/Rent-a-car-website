@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSCR - Naš asortiman</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+     .containerasortiman {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 16px;
+        margin-bottom: 60px;
+    }
+    
+    .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+    }
+    
+    .item img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 8px;
+    }
+    
+    .item h3 {
+        font-size: 1.2em;
+        margin: 8px 0;
+    }
+    
+    .item p {
+        font-size: 1em;
+        text-align: center;
+    }
+    
+    .item:hover{
+        transform: scale(1.10);
+        cursor: pointer;
+    }
+    
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+    
+    .search-bar > button {
+        padding: 10px 20px;
+        border: none;
+        background-color: #007BFF;
+        color: white;
+        font-size: 16px;
+        border-radius: 4px;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+    
+    .search-bar button:hover {
+        background-color: #0056b3;
+    }
+    
+    .search-bar > input[type="text"] {
+        width: 400px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <div class="header">
+            <div class="logo">
+                <img src="LOGO.png" alt="Logo kompanije">
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="index.html">Početna</a></li>
+                    <li><a href="onama.html">O nama</a></li>
+                    <li><a href="asortiman.html">Asortiman</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="preporuke.html">Preporuke</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Pretraži...">
+            <button type="submit">Pretraži</button>
+        </div>
+    </div>
+
+    <div class="containerasortiman"> 
+        <div class="item item1"> 
+            <img src="slike/auta/bmwix1.avif" alt="bmwix"> 
+            <h3>BMW IX (2025)</h3> 
+            <p>Tip: Električni luksuzni SUV</p>  
+            <p>Cijena: 120KM</p>
+        </div>
+        <div class="item item2"> 
+            <img src="slike/auta/lexus.avif" alt="lexus"> 
+            <h3>Lexus NX Hybrid (2025)</h3> 
+            <p>Tip: Hibridni SUV</p> 
+            <p>Cijena: 70KM</p> 
+        </div>
+        <div class="item item3"> 
+            <img src="slike/auta/nissanleaf.avif" alt="nissanleaf"> 
+            <h3>Nissan Leaf (2025)</h3> 
+            <p>Tip: Električni kompaktni automobil</p> 
+            <p>Cijena: 44KM</p> 
+        </div>
+        <div class="item item4"> 
+            <img src="slike/auta/fordmustang.jpeg" alt="fordmustang"> 
+            <h3>Ford Mustang Mach-E (2024)</h3> 
+            <p>Tip: Električni SUV</p> 
+            <p>Cijena: 61KM</p> 
+        </div>
+        <div class="item item5"> 
+            <img src="slike/auta/hyundai.jpg" alt="hyundai"> 
+            <h3>Hyundai Ioniq 5 (2024)</h3> 
+            <p>Tip: Električni crossover</p> 
+            <p>Cijena: 92KM</p> 
+        </div>
+        <div class="item item6"> 
+            <img src="slike/auta/volkswagen.avif" alt="volkswagen"> 
+            <h3>Volkswagen ID.4 (2025)</h3> 
+            <p>Tip: Električni SUV</p> 
+            <p>Cijena: 67KM</p> 
+        </div>
+        <div class="item item7"> 
+            <img src="slike/auta/chevybolt.avif" alt="chevybolt"> 
+            <h3>Chevrolet Bolt EV (2024)</h3> 
+            <p>Tip: Električni kompaktni automobil</p>
+            <p>Cijena: 29KM</p>  
+        </div>
+        <div class="item item8"> 
+            <img src="slike/auta/kia.webp" alt="kia"> 
+            <h3>Kia EV9 (2024)</h3> 
+            <p>Tip: Električni SUV</p> 
+            <p>Cijena: 45KM</p> 
+        </div>
+        <div class="item item9"> 
+            <img src="slike/auta/teslamodels.avif" alt="teslamodels"> 
+            <h3>Tesla Model S Plaid (2024)</h3> 
+            <p>Tip: Električni luksuzni sedan</p> 
+            <p>Cjena: 100KM</p> 
+        </div>
+        <div class="item item10"> 
+            <img src="slike/auta/porschetaycan.webp" alt="porsche"> 
+            <h3>Porsche Taycan (2022)</h3> 
+            <p>Tip: Električni sportski sedan</p> 
+            <p>Cijena: 200KM</p> 
+        </div>
+        <div class="item item11"> 
+            <img src="slike/auta/audietron.avif" alt="audietron"> 
+            <h3>Audi e-Tron GT (2022)</h3> 
+            <p>Tip: Električni luksuzni sedan</p> 
+            <p>Cijena: 190KM</p> 
+        </div>
+        <div class="item item12"> 
+            <img src="slike/auta/jaguar.webp" alt="jaguar"> 
+            <h3>Jaguar I-PACE (2022)</h3> 
+            <p>Tip: Električni SUV</p> 
+            <p>Cijena: 98KM</p> 
+        </div>
+    </div>
+
+    <div class="containerfooter">
+        <div class="footer">
+            <div class="footer-heading footer-1">
+                <h2>Preuzmite aplikaciju:</h2>
+                <a href="index.html"><img src="googleplay.png" alt="googleplaystore"></a>
+            </div>
+            <div class="footer-heading footer-2">
+                <h2>Adresa:</h2>
+                <p>Zmaja od Bosne 8, 71000, Sarajevo</p>
+                <p>Bosna i Hecegovina</p>
+            </div>
+            <div class="footer-heading footer-3">
+                <h2>Pratite nas na društvenim mrežama:</h2>
+                <a href="index.html"><img src="linkedin.png" alt="Linkedin"></a>
+                <a href="index.html"><img src="facebook.png" alt="Facebook"></a>
+                <a href="index.html"><img src="instagram.png" alt="Instagram"></a>
+                <p>E-mail: <span>adin.toholj@fsk.unsa.ba</span></p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var searchButton = document.querySelector('.search-bar button');
+            searchButton.addEventListener('click', pretraziAuta);
+        });
+    
+        function pretraziAuta() {
+            var unos = document.getElementById('searchInput').value.toLowerCase();
+            var items = document.getElementsByClassName('item');
+            
+            for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var title = item.querySelector('h3').innerText.toLowerCase();
+                
+                if (title.includes(unos)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

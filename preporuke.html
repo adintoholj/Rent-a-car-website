@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSCR - Preporuke</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="favicon.ico">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <style>
+    .containerpreporuke {
+        display: grid;
+        grid-template-rows: 600px 600px;
+        grid-template-columns: 1fr;
+        background-color: #1e90ff;
+        margin: 0;
+    }
+    
+    .prvapreporuka {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        color: white;
+        overflow: hidden;
+    }
+    
+    .text-wrapperpreporuke1 {
+        position: relative;
+        z-index: 2;
+        max-width: 50%;
+    }
+    
+    .text-wrapperpreporuke1 h1 {
+        margin: 0;
+    }
+
+    .text-wrapperpreporuke1 p {
+        line-height: 1.6;
+    }
+
+    .image-wrapperpreporuke1 {
+        position: absolute;
+        top: 0;
+        right: -10%;
+        width: 60%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+
+    .image-wrapperpreporuke1 img {
+        width: 50%;
+        max-height: auto;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .drugapreporuka {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+        color: white;
+        overflow: hidden;
+        margin-bottom: 0;
+    }
+
+    .text-wrapperpreporuke2 {
+        position: relative;
+        z-index: 2;
+        max-width: 50%;
+    }
+
+    .text-wrapperpreporuke2 h1 {
+        margin: 0;
+    }
+    
+    .text-wrapperpreporuke2 p {
+            line-height: 1.6;
+        }
+    
+    .image-wrapperpreporuke2 {
+        position: absolute;
+        top: 0;
+        right: -10%;
+        width: 60%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+    }
+    
+    .image-wrapperpreporuke2 img {
+        width: 50%;
+        max-height: auto;
+        border-radius: 50px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+    </style>
+</head>
+<body>
+    <div class="Container">
+        <div class="header">
+            <div class="logo">
+                <img src="LOGO.png" alt="Logo kompanije">
+            </div>
+            <div class="navbar">
+                <ul>
+                    <li><a href="index.html">Početna</a></li>
+                    <li><a href="onama.html">O nama</a></li>
+                    <li><a href="asortiman.html">Asortiman</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="preporuke.html">Preporuke</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="containerpreporuke">
+        <div class="item prvapreporuka">
+            <div class="text-wrapperpreporuke1">
+                <h1>Ahmed, 30</h1>
+                <p style="font-weight: 400;">"Kada sam prvi put iznajmio automobil u 
+                    Pure Steel Car Rentalu, sve 
+                    bilo jednostavno i brzo, od trenutka 
+                    rezervacije do preuzimanja vozila.
+                    Njihova vozila su savršeno održavana i nude velik izbor, 
+                    uključujući i luksuzne modele. 
+                    Definitivno ću ovu uslugu ponovo koristiti."
+                </p>
+            </div>
+            <div class="image-wrapperpreporuke1">
+                <img src="slike/korisnik.png" alt="korisnik">
+            </div>
+        </div>
+        <div class="item drugapreporuka">
+            <div class="text-wrapperpreporuke2">
+                <h1>Hana, 27</h1>
+                <p style="font-weight: 400;">Oduvijek sam imala loše iskustvo
+                    sa iznajmljivanjem automobila, ali Pure steel car rental
+                    me je pozitivno iznenadio. Vrlo sam zadovoljna 
+                    profesionalizmom osoblja i brzinom procesa rezervacije. 
+                    Vozila su uvijek nova i čista. Posebno mi se sviđa asortiman
+                    različitih vozila. 
+                    posvećenost ekološki prihvatljivim opcijama. 
+                    Preporučujem ih svima koji traže pouzdanu kompaniju
+                    za iznajmljivanje automobila."
+                </p>
+            </div>
+            <div class="image-wrapperpreporuke2">
+                <img src="slike/korisnikinja.webp" alt="korisnikinja">
+            </div>
+        </div>
+    </div>
+
+    <div class="containerfooter">
+        <div class="footer">
+            <div class="footer-heading footer-1">
+                <h2>Preuzmite aplikaciju:</h2>
+                <a href="index.html"><img src="googleplay.png" alt="googleplaystore"></a>
+            </div>
+            <div class="footer-heading footer-2">
+                <h2>Adresa:</h2>
+                <p>Zmaja od Bosne 8, 71000, Sarajevo</p>
+                <p>Bosna i Hecegovina</p>
+            </div>
+            <div class="footer-heading footer-3">
+                <h2>Pratite nas na društvenim mrežama:</h2>
+                <a href="index.html"><img src="linkedin.png" alt="Linkedin"></a>
+                <a href="index.html"><img src="facebook.png" alt="Facebook"></a>
+                <a href="index.html"><img src="instagram.png" alt="Instagram"></a>
+                <p>E-mail: <span>adin.toholj@fsk.unsa.ba</span></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
