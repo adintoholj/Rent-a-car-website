@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace RentACarRWA
 {
@@ -15,12 +16,18 @@ namespace RentACarRWA
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            var provider = new FileExtensionContentTypeProvider(); //custom MIME file provider
+            provider.Mappings[".avif"] = "image/avif";
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    ContentTypeProvider = provider
+                });
             }
 
             app.UseHttpsRedirection();
