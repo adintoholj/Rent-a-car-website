@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.EntityFrameworkCore;
+using RentACarRWA.Data;
 
 namespace RentACarRWA
 {
@@ -14,6 +16,7 @@ namespace RentACarRWA
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=users.db"));
 
             var app = builder.Build();
             var provider = new FileExtensionContentTypeProvider(); //custom MIME file provider
