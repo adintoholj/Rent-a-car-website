@@ -27,6 +27,7 @@
     #profile-section {
         display: flex;
         flex-direction: column;
+        justify-content: center;
     }
 
     .login-section label {
@@ -54,8 +55,75 @@
     .login-section button:hover {
         background-color: #0f6ab3;
     }
-    </style>
 
+    #login-form,
+    #register-form {
+        width: 320px;
+        margin: 40px auto;
+        background-color: #f5f5f5;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    #login-form h2,
+    #register-form h2 {
+        text-align: center;
+        color: #1e90ff;
+        margin-bottom: 20px;
+    }
+    
+    #login-form input,
+    #register-form input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+    }
+    #login-form button,
+    #register-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #1e90ff;
+        border: none;
+        border-radius: 6px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        font-size: 15px;
+    }
+    
+    #login-form button:hover,
+    #register-form button:hover {
+        background-color: #0d6efd;
+    }
+    
+    #login-form p a,
+    #register-form p a {
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: #1e90ff;
+        font-size: 14px;
+        text-decoration: none;
+    }
+    
+    #login-form p a:hover,
+    #register-form p a:hover {
+        text-decoration: underline;
+    }
+
+    #profile-section > p{
+        text-align: center;
+    }
+
+  
+
+    </style>
+      
 </head>
 <body>
     <div class="Container">
@@ -88,11 +156,22 @@
             <input type="password" id="password" required>
 
             <button type="submit">Prijavi se</button>
+            <p><a href="#" id="show-register">Novi korisnik? Registrujte se</a></p>
+        </form>
+
+        <form id="register-form" style="display: none;">
+            <h2>Registracija</h2>
+            <input type="text" id="reg-username" placeholder="Korisničko ime" required>
+            <input type="text" id="reg-phone" placeholder="Broj telefona" required>
+            <input type="email" id="reg-email" placeholder="Email adresa" required>
+            <input type="password" id="reg-password" placeholder="Lozinka" required>
+            <button type="submit">Registruj se</button>
+            <p><a href="#" id="show-login">Prijašnji korisnik? Prijavite se</a></p>
         </form>
 
         <div id="profile-section" class="profile-section" style="display: none;">
-            <h2>Dobrodošli, <span id="display-name></span></h2>
-            <p>Email: korisnik@gmail.com</p>
+            <h2>Dobrodošli, <span id="display-name"></span></h2>
+            <p class="emailtext">Email: korisnik@gmail.com</p>
             <button id="logout-btn">Odjava</button>
         </div>
     </div>
@@ -122,6 +201,7 @@
     </div>
 
     <script>
+        //login forma
         document.addEventListener('DOMContentLoaded', function() {
             const loginForm = document.getElementById('login-form');
             const profileSection = document.getElementById('profile-section');
@@ -145,7 +225,7 @@
 
                 if(username && password){
                     const user = { name: username };
-                    localStorage.setItem{'user', JSON.stringify(user)};
+                    localStorage.setItem('user', JSON.stringify(user));
                     loginForm.style.display = 'none';
                     profileSection.style.display = 'block';
                     displayName.innerText = user.name;
@@ -159,7 +239,45 @@
                 loginForm.style.display = 'block';
                 profileSection.style.display = 'none';
             });
+
+            //registracijska forma
+            const registerForm = document.getElementById('register-form');
+            const showRegister = document.getElementById('show-register');
+            const showLogin = document.getElementById('show-login');
+
+        // Prebacivanje između login/registracija
+            showRegister.addEventListener('click', function (e) {
+                e.preventDefault();
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+            });
+            
+            showLogin.addEventListener('click', function (e) {
+                e.preventDefault();
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            });
+
+        // Registrovan , zamijeniti backendom poslije
+            registerForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const username = document.getElementById('reg-username').value.trim();
+                const phone = document.getElementById('reg-phone').value.trim();
+                const email = document.getElementById('reg-email').value.trim();
+                const password = document.getElementById('reg-password').value;
+                
+                if (username && phone && email && password) {
+                    const user = { name: username, phone, email };
+                    localStorage.setItem('user', JSON.stringify(user));
+                    registerForm.style.display = 'none';
+                    profileSection.style.display = 'block';
+                    displayName.innerText = user.name;
+                } else {
+                    alert('Popunite sva polja!');
+                }
+            });
         });
+
     </script>
 </body>
 </html>
