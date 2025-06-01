@@ -17,7 +17,7 @@ namespace RentACarRWA
 
             var app = builder.Build();
             var provider = new FileExtensionContentTypeProvider(); //custom MIME file provider
-            provider.Mappings[".avif"] = "image/avif";
+            provider.Mappings[".avif"] = "image/avif"; //fokusira se na ovaj
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -26,7 +26,7 @@ namespace RentACarRWA
                 app.UseSwaggerUI();
                 app.UseStaticFiles(new StaticFileOptions
                 {
-                    ContentTypeProvider = provider
+                    ContentTypeProvider = provider // stavlja osobinu provider od ranije na property ili atribut CTP koji je vezan za staticfileoptions
                 });
             }
 
