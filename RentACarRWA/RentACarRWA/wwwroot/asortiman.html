@@ -200,6 +200,17 @@
         opacity: 1;
     }
 
+    /*stil statusa*/
+    .status {
+        font-weight: 600;
+        margin-top: 6px;
+        color: green;
+    }
+    
+    .status.zauzet {
+        color: red;
+    }
+
     </style>
 </head>
 <body>
@@ -231,6 +242,7 @@
             <h3>BMW IX (2025)</h3> 
             <p>Tip: Električni luksuzni SUV</p>  
             <p>Cijena: 120KM</p>
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item2"> 
@@ -238,6 +250,7 @@
             <h3>Lexus NX Hybrid (2025)</h3> 
             <p>Tip: Hibridni SUV</p> 
             <p>Cijena: 70KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item3"> 
@@ -245,6 +258,7 @@
             <h3>Nissan Leaf (2025)</h3> 
             <p>Tip: Električni kompaktni automobil</p> 
             <p>Cijena: 44KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item4"> 
@@ -252,13 +266,15 @@
             <h3>Ford Mustang Mach-E (2024)</h3> 
             <p>Tip: Električni SUV</p> 
             <p>Cijena: 61KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item5"> 
             <img src="slike/auta/hyundai.jpg" alt="hyundai"> 
             <h3>Hyundai Ioniq 5 (2024)</h3> 
             <p>Tip: Električni crossover</p> 
-            <p>Cijena: 92KM</p> 
+            <p>Cijena: 92KM</p>
+            <p class="status">Status: <span>Slobodan</span></p> 
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item6"> 
@@ -266,6 +282,7 @@
             <h3>Volkswagen ID.4 (2025)</h3> 
             <p>Tip: Električni SUV</p> 
             <p>Cijena: 67KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item7"> 
@@ -273,6 +290,7 @@
             <h3>Chevrolet Bolt EV (2024)</h3> 
             <p>Tip: Električni kompaktni automobil</p>
             <p>Cijena: 29KM</p>  
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item8"> 
@@ -280,6 +298,7 @@
             <h3>Kia EV9 (2024)</h3> 
             <p>Tip: Električni SUV</p> 
             <p>Cijena: 45KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item9"> 
@@ -287,6 +306,7 @@
             <h3>Tesla Model S Plaid (2024)</h3> 
             <p>Tip: Električni luksuzni sedan</p> 
             <p>Cjena: 100KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item10"> 
@@ -294,6 +314,7 @@
             <h3>Porsche Taycan (2022)</h3> 
             <p>Tip: Električni sportski sedan</p> 
             <p>Cijena: 200KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item11"> 
@@ -301,6 +322,7 @@
             <h3>Audi e-Tron GT (2022)</h3> 
             <p>Tip: Električni luksuzni sedan</p> 
             <p>Cijena: 190KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
         <div class="item item12"> 
@@ -308,6 +330,7 @@
             <h3>Jaguar I-PACE (2022)</h3> 
             <p>Tip: Električni SUV</p> 
             <p>Cijena: 98KM</p> 
+            <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
     </div>
@@ -326,6 +349,7 @@
             <p>Hvala vam na povjerenju! Ovdje možete pregledati svoju rezervaciju.</p>
             <ul id="popupLista" style="list-style-type: none; padding: 0; margin-bottom: 16px;"></ul>
             <p><strong>Ukupna cijena:</strong> <span id="ukupnaCijena">0KM</span></p>
+            <p id="greskaPoruka" style="color: red; display: none; font-weight: bold; margin-top: 10px;"></p>
             <button id="potvrdiRezervaciju" class="rezervisi-btn">Rezerviši auto</button>
         </div>
     </div>
@@ -408,6 +432,15 @@
                      if (!postojiUVeci(naziv)) {
                         korpa.push({ naziv, cijena });
                         azurirajKosaricu();
+                        // mijenjanje statusa
+                        var statusP = itemDiv.querySelector('.status span');
+                        statusP.innerText = 'Zauzet';
+                        itemDiv.querySelector('.status').classList.add('zauzet');
+                        
+                        // onemogucava dugme rezervacije
+                        this.disabled = true;
+                        this.style.cursor = 'not-allowed';
+                        this.innerText = 'Zauzeto';
                     } else {
                         alert("Ovo vozilo je već dodano u korpu.");
                     }
@@ -441,35 +474,64 @@
                 document.getElementById('popupOverlay').style.display = 'block';
                 document.getElementById('popupModal').style.display = 'block';
                 
-                // Poveži "Ukloni" dugmiće
+                // povezivanje ukloni dugmica
                  
                 document.querySelectorAll('.ukloni-btn').forEach(function(btn) {
                     btn.addEventListener('click', function() {
                         const idx = parseInt(this.getAttribute('data-index'));
+                        // Vraćanje statusa na slobodan i omogućavanje dugmeta
+                        var nazivAuto = korpa[idx].naziv;
+                        var itemDiv = Array.from(document.querySelectorAll('.item')).find(div => div.querySelector('h3').innerText === nazivAuto);
+                        if (itemDiv) {
+                            var statusP = itemDiv.querySelector('.status span');
+                            statusP.innerText = 'Slobodan';
+                            itemDiv.querySelector('.status').classList.remove('zauzet');
+                            
+                            var btnRezervisi = itemDiv.querySelector('.rezervisi-btn');
+                            btnRezervisi.disabled = false;
+                            btnRezervisi.style.cursor = 'pointer';
+                            btnRezervisi.innerText = 'Rezerviši';
+                        }
+                        
                         korpa.splice(idx, 1);
                         azurirajKosaricu();
-                        document.getElementById('checkoutBtn').click(); // Ponovno prikaži popup sa ažuriranim sadržajem
+                        document.getElementById('checkoutBtn').click(); // ponovo otvori popup
+                        });
                     });
                 });
-            });
 
             document.getElementById('potvrdiRezervaciju').addEventListener('click', function () {
                 const toast = document.getElementById('toast');
+                const greskaElement = document.getElementById('greskaPoruka');
+                
+                // Ako je korpa prazna, prikaži poruku i prekini funkciju
+                if (korpa.length === 0) {
+                    greskaElement.innerText = 'Molimo vas, odaberite auta za rezervaciju.';
+                    greskaElement.style.display = 'block';
+                    return;
+                } else {
+                    // Sakrij poruku ako ima auta u korpi
+                    greskaElement.style.display = 'none';
+                }
+                
+                // Prikazivanje toasta
                 toast.classList.add('show');
-                // Zatvori popup
+                
+                // Zatvoranje popup
                 document.getElementById('popupOverlay').style.display = 'none';
                 document.getElementById('popupModal').style.display = 'none';
                 
-                // Očisti korpu i listu nakon rezervacije
+                // ciscenje korpe i liste nakon rezervacije
                 korpa.length = 0;
                 azurirajKosaricu();
                 document.getElementById('popupLista').innerHTML = '';
                 document.getElementById('ukupnaCijena').innerText = '0KM';
-                // fali poziv ka backendu ovdje
+                
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 5000);
             });
+
             
             document.getElementById('closePopup').addEventListener('click', function () {
                 document.getElementById('popupOverlay').style.display = 'none';
