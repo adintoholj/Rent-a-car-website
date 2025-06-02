@@ -30,7 +30,7 @@ namespace RentACarRWA.Controllers
         }
 
         [HttpPost("login")]
-        public IActionResult Login([FromBody] User login)
+        public IActionResult Login([FromBody] LoginRequest login) //koristi loginreq umjesto user
         {
             var user = _context.Users.FirstOrDefault(u =>
                 u.Username == login.Username &&
@@ -41,5 +41,6 @@ namespace RentACarRWA.Controllers
 
             return Ok(user);
         }
+
     }
 }

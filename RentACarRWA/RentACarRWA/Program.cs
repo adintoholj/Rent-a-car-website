@@ -17,6 +17,16 @@ namespace RentACarRWA
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite("Data Source=users.db"));
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
 
             var app = builder.Build();
             var provider = new FileExtensionContentTypeProvider(); //custom MIME file provider
@@ -31,6 +41,8 @@ namespace RentACarRWA
                 {
                     ContentTypeProvider = provider // stavlja osobinu provider od ranije na property ili atribut CTP koji je vezan za staticfileoptions
                 });
+                app.UseRouting();
+                app.UseCors("AllowAll");
             }
 
             app.UseHttpsRedirection();
