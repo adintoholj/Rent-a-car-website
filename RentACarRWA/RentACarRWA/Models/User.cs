@@ -19,5 +19,8 @@ namespace RentACarRWA.Models
 
         [Required]
         public string PasswordHash { get; set; }
+
+        public ICollection<Car> Cars { get; set; } = new List<Car>();
+
     }
 }

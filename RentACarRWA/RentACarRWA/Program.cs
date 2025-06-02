@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using RentACarRWA.Data;
+using RentACarRWA.Models;
 
 namespace RentACarRWA
 {
@@ -51,6 +52,21 @@ namespace RentACarRWA
 
 
             app.MapControllers();
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                context.Database.EnsureCreated();
+
+                if (!context.Cars.Any())
+                {
+                    context.Cars.AddRange(
+                        new Car { ModelName = "BMW IX", PricePerDay = 120 },
+                        new Car { ModelName = "Ford Mustang", PricePerDay = 95 },
+                        new Car { ModelName = "Tesla Model S", PricePerDay = 150 }
+                    );
+                    context.SaveChanges();
+                }
+            }
 
             app.Run();
         }
