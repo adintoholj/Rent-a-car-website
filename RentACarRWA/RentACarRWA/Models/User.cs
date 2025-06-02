@@ -4,15 +4,17 @@ namespace RentACarRWA.Models
 {
     public class User
     {
-        [Key]
         public int Id { get; set; }
 
         [Required]
         public string Username { get; set; }
 
+        [Required]
+        [RegularExpression(@"^\+?\d{6,15}$", ErrorMessage = "Telefon mora sadržavati samo brojeve (i opcionalno + na početku), između 6 i 15 cifara.")]
         public string Phone { get; set; }
 
-        [EmailAddress]
+        [Required]
+        [EmailAddress(ErrorMessage = "Email nije u ispravnom formatu.")]
         public string Email { get; set; }
 
         [Required]

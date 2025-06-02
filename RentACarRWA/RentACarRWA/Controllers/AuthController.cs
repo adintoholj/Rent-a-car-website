@@ -18,6 +18,11 @@ namespace RentACarRWA.Controllers
         [HttpPost("register")]
         public IActionResult Register([FromBody] User user)
         {
+            if (!ModelState.IsValid)
+            {
+                return ValidationProblem(ModelState);
+            }
+
             if (_context.Users.Any(u => u.Username == user.Username))
             {
                 return BadRequest("Korisnik već postoji.");

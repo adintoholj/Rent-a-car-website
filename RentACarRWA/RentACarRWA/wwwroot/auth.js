@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Selektujemo sve važne elemente iz DOM-a
+    // selektovanje vaznih elemenata
     const loginForm = document.getElementById('login-form');
     const registerForm = document.getElementById('register-form');
     const profileSection = document.getElementById('profile-section');
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const existingMessage = form.querySelector('.form-message');
         if (existingMessage) existingMessage.remove();
 
-        // Kreiramo novi paragraf s porukom
+        // paragraf sa porukom
         const msg = document.createElement('p');
         msg.className = 'form-message';
         msg.style.color = type === 'error' ? 'red' : 'green';
@@ -106,8 +106,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (response.ok) {
                 const user = await response.json();
+                localStorage.setItem('user', JSON.stringify(user));
 
-                // Sakrivamo formu i prikazujemo profil
+                // sakrivanje forme i prikazivanje profila
                 loginForm.style.display = 'none';
                 profileSection.style.display = 'block';
                 displayName.innerText = user.username;
@@ -125,5 +126,16 @@ document.addEventListener('DOMContentLoaded', function () {
     logoutBtn.addEventListener('click', function () {
         profileSection.style.display = 'none';
         loginForm.style.display = 'block';
+        localStorage.removeItem('user');
     });
+
+    const savedUser = localStorage.getItem('user');
+    if (savedUser) {
+        const user = JSON.parse(savedUser);
+        loginForm.style.display = 'none';
+        registerForm.style.display = 'none';
+        profileSection.style.display = 'block';
+        displayName.innerText = user.username;
+        document.querySelector('.emailtext').innerText = 'Email: ' + user.email;
+    }
 });
