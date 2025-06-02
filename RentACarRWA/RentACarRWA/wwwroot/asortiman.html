@@ -77,7 +77,7 @@
         border-radius: 4px;
         font-size: 16px;
     }
-
+    /*rezervacija*/
     .rezervisi-btn {
         margin-top: 12px;
         padding: 10px 20px;
@@ -89,10 +89,117 @@
         cursor: pointer;
         transition: background-color 0.3s ease;
     }
-    
     .rezervisi-btn:hover {
         background-color: #218838;
     }
+
+    .kosarica {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 250px;
+        background-color: white;
+        border: 2px solid #ddd;
+        border-radius: 10px;
+        padding: 16px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        z-index: 1000;
+    }
+    .kosarica h3 {
+        margin-top: 0;
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .kosarica ul {
+        list-style-type: none;
+        padding: 0;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-bottom: 10px;
+    }
+    
+    .kosarica ul li {
+        padding: 6px 0;
+        border-bottom: 1px solid #eee;
+        font-size: 14px;
+    }
+    
+    #checkoutBtn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+    
+    #checkoutBtn:hover {
+        background-color: #0056b3;
+    }
+    /*popup*/
+    .popup-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 1100;
+    }
+    .popup-modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+        width: 400px;
+        max-width: 90%;
+        z-index: 1200;
+    }
+    .popup-content h2 {
+        margin-top: 0;
+    }
+    .close-btn {
+        position: absolute;
+        top: 12px;
+        right: 16px;
+        font-size: 24px;
+        color: #333;
+        cursor: pointer;
+    }
+
+    /* Toast notifikacija */
+    #toast {
+        visibility: hidden;
+        min-width: 250px;
+        background-color: #28a745;
+        color: white;
+        text-align: center;
+        border-radius: 8px;
+        padding: 16px;
+        position: fixed;
+        bottom: 40px;
+        right: 20px;
+        z-index: 1300;
+        font-size: 16px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        transition: visibility 0s, opacity 0.5s ease-in-out;
+        opacity: 0;
+    }
+    
+    #toast.show {
+        visibility: visible;
+        opacity: 1;
+    }
+
     </style>
 </head>
 <body>
@@ -205,6 +312,26 @@
         </div>
     </div>
 
+    <div id="kosarica" class="kosarica">
+        <h3>Korpa</h3>
+        <ul id="listaKosarice"></ul>
+        <button id="checkoutBtn">Završi rezervaciju</button>
+    </div>
+
+    <div id="popupOverlay" class="popup-overlay"></div>
+    <div id="popupModal" class="popup-modal">
+        <div class="popup-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <h2>Pregled rezervacije</h2>
+            <p>Hvala vam na povjerenju! Ovdje možete pregledati svoju rezervaciju.</p>
+            <ul id="popupLista" style="list-style-type: none; padding: 0; margin-bottom: 16px;"></ul>
+            <p><strong>Ukupna cijena:</strong> <span id="ukupnaCijena">0KM</span></p>
+            <button id="potvrdiRezervaciju" class="rezervisi-btn">Rezerviši auto</button>
+        </div>
+    </div>
+
+    <div id="toast">Rezervacija uspješno izvršena!</div>
+
     <div class="containerfooter">
         <div class="footer">
             <div class="footer-heading footer-1">
@@ -226,6 +353,7 @@
 
         </div>
     </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var searchButton = document.querySelector('.search-bar button');
@@ -247,6 +375,112 @@
                 }
             }
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var rezervisiButtons = document.querySelectorAll('.rezervisi-btn');
+            var listaKosarice = document.getElementById('listaKosarice');
+            var popupLista = document.getElementById('popupLista');
+            var ukupnaCijenaElement = document.getElementById('ukupnaCijena');
+            var korpa = [];
+            
+            function postojiUVeci(naziv) {
+                return korpa.some(function(item) {
+                    return item.naziv === naziv;
+                });
+            }
+            
+            function azurirajKosaricu() {
+                listaKosarice.innerHTML = '';
+                korpa.forEach(function(item) {
+                    var li = document.createElement('li');
+                    li.textContent = `${item.naziv} - ${item.cijena}KM`;
+                    listaKosarice.appendChild(li);
+                });
+            }
+
+            rezervisiButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var itemDiv = this.closest('.item');
+                    var naziv = itemDiv.querySelector('h3').innerText;
+                    var cijenaText = itemDiv.querySelectorAll('p')[1].innerText;
+                    var cijena = parseFloat(cijenaText.replace(/[^\d]/g, ''));
+                    
+                     if (!postojiUVeci(naziv)) {
+                        korpa.push({ naziv, cijena });
+                        azurirajKosaricu();
+                    } else {
+                        alert("Ovo vozilo je već dodano u korpu.");
+                    }
+                    
+                    
+                });
+            });
+            
+            document.getElementById('checkoutBtn').addEventListener('click', function () {
+                const porukaElement = document.querySelector('.popup-content p');
+                popupLista.innerHTML = '';
+                let total = 0;
+                
+                korpa.forEach(function (item, index) {
+                    let li = document.createElement('li');
+                    li.innerHTML = `${item.naziv} - ${item.cijena}KM <button class="ukloni-btn" data-index="${index}" style="margin-left:10px; color: red; background: none; border: none; cursor: pointer;">Ukloni</button>`;
+                    popupLista.appendChild(li);
+                    total += item.cijena;
+                });
+                
+                ukupnaCijenaElement.innerText = `${total}KM`;
+                
+                // Dinamička poruka
+                const brojAuta = korpa.length;
+                let poruka = brojAuta === 0
+                ? 'Niste dodali nijedno vozilo u korpu.'
+                : `Hvala vam na povjerenju! Rezervišete ${brojAuta} ${brojAuta === 1 ? 'auto' : 'auta'}.`;
+                
+                porukaElement.innerText = poruka;
+                
+                document.getElementById('popupOverlay').style.display = 'block';
+                document.getElementById('popupModal').style.display = 'block';
+                
+                // Poveži "Ukloni" dugmiće
+                 
+                document.querySelectorAll('.ukloni-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const idx = parseInt(this.getAttribute('data-index'));
+                        korpa.splice(idx, 1);
+                        azurirajKosaricu();
+                        document.getElementById('checkoutBtn').click(); // Ponovno prikaži popup sa ažuriranim sadržajem
+                    });
+                });
+            });
+
+            document.getElementById('potvrdiRezervaciju').addEventListener('click', function () {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                // Zatvori popup
+                document.getElementById('popupOverlay').style.display = 'none';
+                document.getElementById('popupModal').style.display = 'none';
+                
+                // Očisti korpu i listu nakon rezervacije
+                korpa.length = 0;
+                azurirajKosaricu();
+                document.getElementById('popupLista').innerHTML = '';
+                document.getElementById('ukupnaCijena').innerText = '0KM';
+                // fali poziv ka backendu ovdje
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
+            });
+            
+            document.getElementById('closePopup').addEventListener('click', function () {
+                document.getElementById('popupOverlay').style.display = 'none';
+                document.getElementById('popupModal').style.display = 'none';
+            });
+            
+            document.getElementById('popupOverlay').addEventListener('click', function () {
+                document.getElementById('popupOverlay').style.display = 'none';
+                document.getElementById('popupModal').style.display = 'none';
+            });
+        });
     </script>
 </body>
 </html>
