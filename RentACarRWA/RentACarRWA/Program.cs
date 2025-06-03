@@ -55,17 +55,26 @@ namespace RentACarRWA
             using (var scope = app.Services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                context.Database.EnsureCreated();
+                context.Database.Migrate();
 
-                if (!context.Cars.Any())
-                {
-                    context.Cars.AddRange(
-                        new Car { ModelName = "BMW IX", PricePerDay = 120 },
-                        new Car { ModelName = "Ford Mustang", PricePerDay = 95 },
-                        new Car { ModelName = "Tesla Model S", PricePerDay = 150 }
-                    );
-                    context.SaveChanges();
-                }
+
+                context.Cars.AddRange(
+                    new Car { ModelName = "BMW IX", PricePerDay = 120, Description = "Elektricni SUV" },
+                    new Car { ModelName = "Ford Mustang", PricePerDay = 95, Description = "Muscle car" },
+                    new Car { ModelName = "Tesla Model S", PricePerDay = 150, Description = "Luksuzni EV" },
+                    new Car { ModelName = "Audi A4", PricePerDay = 85, Description = "Komforna limuzina" },
+                    new Car { ModelName = "VW Golf 8", PricePerDay = 60, Description = "Gradski auto" },
+                    new Car { ModelName = "Chevrolet Bolt", PricePerDay = 29, Description = "Elektricni kompaktni automobil" },
+                    new Car { ModelName = "Kia EV9", PricePerDay = 45, Description = "Elektricni SUV" },
+                    new Car { ModelName = "Porsche Taycan", PricePerDay = 200, Description = "Elektricni sportski sedan" },
+                    new Car { ModelName = "Audi e-Tron GT", PricePerDay = 190, Description = "Elektricni luksuzni sedan" },
+                    new Car { ModelName = "Jaguar I-PACE", PricePerDay = 98, Description = "Elektricni SUV" },
+                    new Car { ModelName = "Hyundai Ioniq 5", PricePerDay = 92, Description = "Elektricni crossover" },
+                    new Car { ModelName = "Lexus NX Hybrid", PricePerDay = 70, Description = "Hibridni SUV" }
+                );
+                context.SaveChanges();
+
+
             }
 
             app.Run();

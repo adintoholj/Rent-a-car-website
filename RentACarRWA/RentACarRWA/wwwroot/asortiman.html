@@ -10,207 +10,211 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
-     .containerasortiman {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(4, auto);
-        gap: 16px;
-        margin-bottom: 60px;
-    }
-    
-    .item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 16px;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        background-color: #f9f9f9;
-    }
-    
-    .item img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 8px;
-    }
-    
-    .item h3 {
-        font-size: 1.2em;
-        margin: 8px 0;
-    }
-    
-    .item p {
-        font-size: 1em;
-        text-align: center;
-    }
-    
-    .item:hover{
-        transform: scale(1.10);
-        cursor: pointer;
-    }
-    
-    .search-bar {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-    
-    .search-bar > button {
-        padding: 10px 20px;
-        border: none;
-        background-color: #007BFF;
-        color: white;
-        font-size: 16px;
-        border-radius: 4px;
-        margin-left: 10px;
-        cursor: pointer;
-    }
-    
-    .search-bar button:hover {
-        background-color: #0056b3;
-    }
-    
-    .search-bar > input[type="text"] {
-        width: 400px;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 16px;
-    }
-    /*rezervacija*/
-    .rezervisi-btn {
-        margin-top: 12px;
-        padding: 10px 20px;
-        background-color: #28a745;
-        color: white;
-        font-size: 16px;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    .rezervisi-btn:hover {
-        background-color: #218838;
-    }
+        .containerasortiman {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, auto);
+            gap: 16px;
+            margin-bottom: 60px;
+        }
 
-    .kosarica {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 250px;
-        background-color: white;
-        border: 2px solid #ddd;
-        border-radius: 10px;
-        padding: 16px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.2);
-        z-index: 1000;
-    }
-    .kosarica h3 {
-        margin-top: 0;
-        font-size: 18px;
-        text-align: center;
-    }
-    
-    .kosarica ul {
-        list-style-type: none;
-        padding: 0;
-        max-height: 200px;
-        overflow-y: auto;
-        margin-bottom: 10px;
-    }
-    
-    .kosarica ul li {
-        padding: 6px 0;
-        border-bottom: 1px solid #eee;
-        font-size: 14px;
-    }
-    
-    #checkoutBtn {
-        width: 100%;
-        padding: 10px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        border-radius: 6px;
-        font-size: 14px;
-        cursor: pointer;
-    }
-    
-    #checkoutBtn:hover {
-        background-color: #0056b3;
-    }
-    /*popup*/
-    .popup-overlay {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 1100;
-    }
-    .popup-modal {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: white;
-        border-radius: 12px;
-        padding: 24px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.3);
-        width: 400px;
-        max-width: 90%;
-        z-index: 1200;
-    }
-    .popup-content h2 {
-        margin-top: 0;
-    }
-    .close-btn {
-        position: absolute;
-        top: 12px;
-        right: 16px;
-        font-size: 24px;
-        color: #333;
-        cursor: pointer;
-    }
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
 
-    /* Toast notifikacija */
-    #toast {
-        visibility: hidden;
-        min-width: 250px;
-        background-color: #28a745;
-        color: white;
-        text-align: center;
-        border-radius: 8px;
-        padding: 16px;
-        position: fixed;
-        bottom: 40px;
-        right: 20px;
-        z-index: 1300;
-        font-size: 16px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        transition: visibility 0s, opacity 0.5s ease-in-out;
-        opacity: 0;
-    }
-    
-    #toast.show {
-        visibility: visible;
-        opacity: 1;
-    }
+            .item img {
+                max-width: 100%;
+                height: auto;
+                margin-bottom: 8px;
+            }
 
-    /*stil statusa*/
-    .status {
-        font-weight: 600;
-        margin-top: 6px;
-        color: green;
-    }
-    
-    .status.zauzet {
-        color: red;
-    }
+            .item h3 {
+                font-size: 1.2em;
+                margin: 8px 0;
+            }
 
+            .item p {
+                font-size: 1em;
+                text-align: center;
+            }
+
+            .item:hover {
+                transform: scale(1.10);
+                cursor: pointer;
+            }
+
+        .search-bar {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+            .search-bar > button {
+                padding: 10px 20px;
+                border: none;
+                background-color: #007BFF;
+                color: white;
+                font-size: 16px;
+                border-radius: 4px;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+            .search-bar button:hover {
+                background-color: #0056b3;
+            }
+
+            .search-bar > input[type="text"] {
+                width: 400px;
+                padding: 10px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+        /*rezervacija*/
+        .rezervisi-btn {
+            margin-top: 12px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            .rezervisi-btn:hover {
+                background-color: #218838;
+            }
+
+        .kosarica {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 250px;
+            background-color: white;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+            .kosarica h3 {
+                margin-top: 0;
+                font-size: 18px;
+                text-align: center;
+            }
+
+            .kosarica ul {
+                list-style-type: none;
+                padding: 0;
+                max-height: 200px;
+                overflow-y: auto;
+                margin-bottom: 10px;
+            }
+
+                .kosarica ul li {
+                    padding: 6px 0;
+                    border-bottom: 1px solid #eee;
+                    font-size: 14px;
+                }
+
+        #checkoutBtn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+            #checkoutBtn:hover {
+                background-color: #0056b3;
+            }
+        /*popup*/
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1100;
+        }
+
+        .popup-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.3);
+            width: 400px;
+            max-width: 90%;
+            z-index: 1200;
+        }
+
+        .popup-content h2 {
+            margin-top: 0;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            font-size: 24px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Toast notifikacija */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #28a745;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            bottom: 40px;
+            right: 20px;
+            z-index: 1300;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: visibility 0s, opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+
+            #toast.show {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        /*stil statusa*/
+        .status {
+            font-weight: 600;
+            margin-top: 6px;
+            color: green;
+        }
+
+            .status.zauzet {
+                color: red;
+            }
     </style>
 </head>
 <body>
@@ -236,100 +240,100 @@
         </div>
     </div>
 
-    <div class="containerasortiman"> 
-        <div class="item item1" data-id="1"> 
-            <img src="slike/auta/bmwix1.avif" alt="bmwix"> 
-            <h3>BMW IX (2025)</h3> 
-            <p>Tip: Električni luksuzni SUV</p>  
+    <div class="containerasortiman">
+        <div class="item item1" data-id="1">
+            <img src="slike/auta/bmwix1.avif" alt="bmwix">
+            <h3>BMW IX (2025)</h3>
+            <p>Tip: Električni luksuzni SUV</p>
             <p>Cijena: 120KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item2" data-id="2"> 
-            <img src="slike/auta/lexus.avif" alt="lexus"> 
-            <h3>Lexus NX Hybrid (2025)</h3> 
-            <p>Tip: Hibridni SUV</p> 
-            <p>Cijena: 70KM</p> 
+        <div class="item item2" data-id="2">
+            <img src="slike/auta/lexus.avif" alt="lexus">
+            <h3>Lexus NX Hybrid (2025)</h3>
+            <p>Tip: Hibridni SUV</p>
+            <p>Cijena: 70KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item3" data-id="3"> 
-            <img src="slike/auta/nissanleaf.avif" alt="nissanleaf"> 
-            <h3>Nissan Leaf (2025)</h3> 
-            <p>Tip: Električni kompaktni automobil</p> 
-            <p>Cijena: 44KM</p> 
-            <p class="status">Status: <span>Slobodan</span></p>
-            <button class="rezervisi-btn">Rezerviši</button>
-        </div>
-        <div class="item item4" data-id="4"> 
-            <img src="slike/auta/fordmustang.jpeg" alt="fordmustang"> 
-            <h3>Ford Mustang Mach-E (2024)</h3> 
-            <p>Tip: Električni SUV</p> 
-            <p>Cijena: 61KM</p> 
-            <p class="status">Status: <span>Slobodan</span></p>
-            <button class="rezervisi-btn">Rezerviši</button>
-        </div>
-        <div class="item item5" data-id="5"> 
-            <img src="slike/auta/hyundai.jpg" alt="hyundai"> 
-            <h3>Hyundai Ioniq 5 (2024)</h3> 
-            <p>Tip: Električni crossover</p> 
-            <p>Cijena: 92KM</p>
-            <p class="status">Status: <span>Slobodan</span></p> 
-            <button class="rezervisi-btn">Rezerviši</button>
-        </div>
-        <div class="item item6" data-id="6"> 
-            <img src="slike/auta/volkswagen.avif" alt="volkswagen"> 
-            <h3>Volkswagen ID.4 (2025)</h3> 
-            <p>Tip: Električni SUV</p> 
-            <p>Cijena: 67KM</p> 
-            <p class="status">Status: <span>Slobodan</span></p>
-            <button class="rezervisi-btn">Rezerviši</button>
-        </div>
-        <div class="item item7" data-id="7"> 
-            <img src="slike/auta/chevybolt.avif" alt="chevybolt"> 
-            <h3>Chevrolet Bolt EV (2024)</h3> 
+        <div class="item item3" data-id="3">
+            <img src="slike/auta/nissanleaf.avif" alt="nissanleaf">
+            <h3>Nissan Leaf (2025)</h3>
             <p>Tip: Električni kompaktni automobil</p>
-            <p>Cijena: 29KM</p>  
+            <p>Cijena: 44KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item8" data-id="8"> 
-            <img src="slike/auta/kia.webp" alt="kia"> 
-            <h3>Kia EV9 (2024)</h3> 
-            <p>Tip: Električni SUV</p> 
-            <p>Cijena: 45KM</p> 
+        <div class="item item4" data-id="4">
+            <img src="slike/auta/fordmustang.jpeg" alt="fordmustang">
+            <h3>Ford Mustang Mach-E (2024)</h3>
+            <p>Tip: Električni SUV</p>
+            <p>Cijena: 61KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item9" data-id="9"> 
-            <img src="slike/auta/teslamodels.avif" alt="teslamodels"> 
-            <h3>Tesla Model S Plaid (2024)</h3> 
-            <p>Tip: Električni luksuzni sedan</p> 
-            <p>Cjena: 100KM</p> 
+        <div class="item item5" data-id="5">
+            <img src="slike/auta/hyundai.jpg" alt="hyundai">
+            <h3>Hyundai Ioniq 5 (2024)</h3>
+            <p>Tip: Električni crossover</p>
+            <p>Cijena: 92KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item10" data-id="10"> 
-            <img src="slike/auta/porschetaycan.webp" alt="porsche"> 
-            <h3>Porsche Taycan (2022)</h3> 
-            <p>Tip: Električni sportski sedan</p> 
-            <p>Cijena: 200KM</p> 
+        <div class="item item6" data-id="6">
+            <img src="slike/auta/volkswagen.avif" alt="volkswagen">
+            <h3>Volkswagen ID.4 (2025)</h3>
+            <p>Tip: Električni SUV</p>
+            <p>Cijena: 67KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item11" data-id="11"> 
-            <img src="slike/auta/audietron.avif" alt="audietron"> 
-            <h3>Audi e-Tron GT (2022)</h3> 
-            <p>Tip: Električni luksuzni sedan</p> 
-            <p>Cijena: 190KM</p> 
+        <div class="item item7" data-id="7">
+            <img src="slike/auta/chevybolt.avif" alt="chevybolt">
+            <h3>Chevrolet Bolt EV (2024)</h3>
+            <p>Tip: Električni kompaktni automobil</p>
+            <p>Cijena: 29KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
-        <div class="item item12" data-id="12"> 
-            <img src="slike/auta/jaguar.webp" alt="jaguar"> 
-            <h3>Jaguar I-PACE (2022)</h3> 
-            <p>Tip: Električni SUV</p> 
-            <p>Cijena: 98KM</p> 
+        <div class="item item8" data-id="8">
+            <img src="slike/auta/kia.webp" alt="kia">
+            <h3>Kia EV9 (2024)</h3>
+            <p>Tip: Električni SUV</p>
+            <p>Cijena: 45KM</p>
+            <p class="status">Status: <span>Slobodan</span></p>
+            <button class="rezervisi-btn">Rezerviši</button>
+        </div>
+        <div class="item item9" data-id="9">
+            <img src="slike/auta/teslamodels.avif" alt="teslamodels">
+            <h3>Tesla Model S Plaid (2024)</h3>
+            <p>Tip: Električni luksuzni sedan</p>
+            <p>Cjena: 100KM</p>
+            <p class="status">Status: <span>Slobodan</span></p>
+            <button class="rezervisi-btn">Rezerviši</button>
+        </div>
+        <div class="item item10" data-id="10">
+            <img src="slike/auta/porschetaycan.webp" alt="porsche">
+            <h3>Porsche Taycan (2022)</h3>
+            <p>Tip: Električni sportski sedan</p>
+            <p>Cijena: 200KM</p>
+            <p class="status">Status: <span>Slobodan</span></p>
+            <button class="rezervisi-btn">Rezerviši</button>
+        </div>
+        <div class="item item11" data-id="11">
+            <img src="slike/auta/audietron.avif" alt="audietron">
+            <h3>Audi e-Tron GT (2022)</h3>
+            <p>Tip: Električni luksuzni sedan</p>
+            <p>Cijena: 190KM</p>
+            <p class="status">Status: <span>Slobodan</span></p>
+            <button class="rezervisi-btn">Rezerviši</button>
+        </div>
+        <div class="item item12" data-id="12">
+            <img src="slike/auta/jaguar.webp" alt="jaguar">
+            <h3>Jaguar I-PACE (2022)</h3>
+            <p>Tip: Električni SUV</p>
+            <p>Cijena: 98KM</p>
             <p class="status">Status: <span>Slobodan</span></p>
             <button class="rezervisi-btn">Rezerviši</button>
         </div>
@@ -383,15 +387,15 @@
             var searchButton = document.querySelector('.search-bar button');
             searchButton.addEventListener('click', pretraziAuta);
         });
-    
+
         function pretraziAuta() {
             var unos = document.getElementById('searchInput').value.toLowerCase();
             var items = document.getElementsByClassName('item');
-            
+
             for (var i = 0; i < items.length; i++) {
                 var item = items[i];
                 var title = item.querySelector('h3').innerText.toLowerCase();
-                
+
                 if (title.includes(unos)) {
                     item.style.display = 'block';
                 } else {
@@ -400,19 +404,100 @@
             }
         }
 
+        document.addEventListener('DOMContentLoaded', function () {
+            fetch('https://localhost:7215/api/cars')
+                .then(response => response.json())
+                .then(cars => {
+                    cars.forEach(car => {
+                        const itemDiv = document.querySelector(`.item[data-id='${car.id}']`);
+                        if (itemDiv) {
+                            const statusSpan = itemDiv.querySelector('.status span');
+                            const rezervisiBtn = itemDiv.querySelector('.rezervisi-btn');
+
+                            if (car.isReserved) {
+                                statusSpan.innerText = 'Zauzet';
+                                itemDiv.querySelector('.status').classList.add('zauzet');
+                                rezervisiBtn.disabled = true;
+                                rezervisiBtn.style.cursor = 'not-allowed';
+                                rezervisiBtn.innerText = 'Zauzeto';
+                            } else {
+                                statusSpan.innerText = 'Slobodan';
+                                itemDiv.querySelector('.status').classList.remove('zauzet');
+                                rezervisiBtn.disabled = false;
+                                rezervisiBtn.style.cursor = 'pointer';
+                                rezervisiBtn.innerText = 'Rezerviši';
+                            }
+
+                            // ❗ Dodaj event listener odmah nakon što postaviš dugme
+                            rezervisiBtn.addEventListener('click', function () {
+                                var naziv = itemDiv.querySelector('h3').innerText;
+                                var cijenaText = itemDiv.querySelectorAll('p')[1].innerText;
+                                var cijena = parseFloat(cijenaText.replace(/[^\d]/g, ''));
+                                var carId = parseInt(itemDiv.getAttribute('data-id'));
+
+                                if (isNaN(carId)) {
+                                    alert("Greška: Vozilo nema validan ID.");
+                                    return;
+                                }
+
+                                if (!postojiUVeci(naziv)) {
+                                    const storedUser = JSON.parse(localStorage.getItem('user'));
+                                    if (!storedUser || !storedUser.id) {
+                                        alert("Morate biti prijavljeni da biste rezervisali auto.");
+                                        return;
+                                    }
+
+                                    fetch('https://localhost:7215/api/cars/reserve', {
+                                        method: 'POST',
+                                        headers: { 'Content-Type': 'application/json' },
+                                        body: JSON.stringify({
+                                            carId: carId,
+                                            userId: storedUser.id
+                                        })
+                                    })
+                                        .then(async response => {
+                                            const text = await response.text();
+                                            if (!response.ok) throw new Error(text);
+
+                                            korpa.push({ naziv, cijena });
+                                            azurirajKosaricu();
+
+                                            statusSpan.innerText = 'Zauzet';
+                                            itemDiv.querySelector('.status').classList.add('zauzet');
+
+                                            rezervisiBtn.disabled = true;
+                                            rezervisiBtn.style.cursor = 'not-allowed';
+                                            rezervisiBtn.innerText = 'Zauzeto';
+                                        })
+                                        .catch(err => {
+                                            alert('Greška: ' + err.message);
+                                        });
+                                } else {
+                                    alert("Ovo vozilo je već dodano u korpu.");
+                                }
+                            });
+                        }
+                    });
+                })
+                .catch(err => {
+                    console.error('Greška pri dohvaćanju vozila:', err);
+                });
+        });
+
+
         document.addEventListener('DOMContentLoaded', function() {
             var rezervisiButtons = document.querySelectorAll('.rezervisi-btn');
             var listaKosarice = document.getElementById('listaKosarice');
             var popupLista = document.getElementById('popupLista');
             var ukupnaCijenaElement = document.getElementById('ukupnaCijena');
             var korpa = [];
-            
+
             function postojiUVeci(naziv) {
                 return korpa.some(function(item) {
                     return item.naziv === naziv;
                 });
             }
-            
+
             function azurirajKosaricu() {
                 listaKosarice.innerHTML = '';
                 korpa.forEach(function(item) {
@@ -475,34 +560,34 @@
                 });
             });
 
-            
+
             document.getElementById('checkoutBtn').addEventListener('click', function () {
                 const porukaElement = document.querySelector('.popup-content p');
                 popupLista.innerHTML = '';
                 let total = 0;
-                
+
                 korpa.forEach(function (item, index) {
                     let li = document.createElement('li');
                     li.innerHTML = `${item.naziv} - ${item.cijena}KM <button class="ukloni-btn" data-index="${index}" style="margin-left:10px; color: red; background: none; border: none; cursor: pointer;">Ukloni</button>`;
                     popupLista.appendChild(li);
                     total += item.cijena;
                 });
-                
+
                 ukupnaCijenaElement.innerText = `${total}KM`;
-                
+
                 // Dinamička poruka
                 const brojAuta = korpa.length;
                 let poruka = brojAuta === 0
                 ? 'Niste dodali nijedno vozilo u korpu.'
                 : `Hvala vam na povjerenju! Rezervišete ${brojAuta} ${brojAuta === 1 ? 'auto' : 'auta'}.`;
-                
+
                 porukaElement.innerText = poruka;
-                
+
                 document.getElementById('popupOverlay').style.display = 'block';
                 document.getElementById('popupModal').style.display = 'block';
-                
+
                 // povezivanje ukloni dugmica
-                 
+
                 document.querySelectorAll('.ukloni-btn').forEach(function(btn) {
                     btn.addEventListener('click', function() {
                         const idx = parseInt(this.getAttribute('data-index'));
@@ -513,13 +598,13 @@
                             var statusP = itemDiv.querySelector('.status span');
                             statusP.innerText = 'Slobodan';
                             itemDiv.querySelector('.status').classList.remove('zauzet');
-                            
+
                             var btnRezervisi = itemDiv.querySelector('.rezervisi-btn');
                             btnRezervisi.disabled = false;
                             btnRezervisi.style.cursor = 'pointer';
                             btnRezervisi.innerText = 'Rezerviši';
                         }
-                        
+
                         korpa.splice(idx, 1);
                         azurirajKosaricu();
                         document.getElementById('checkoutBtn').click(); // ponovo otvori popup
@@ -530,7 +615,7 @@
             document.getElementById('potvrdiRezervaciju').addEventListener('click', function () {
                 const toast = document.getElementById('toast');
                 const greskaElement = document.getElementById('greskaPoruka');
-                
+
                 // Ako je korpa prazna, prikaži poruku i prekini funkciju
                 if (korpa.length === 0) {
                     greskaElement.innerText = 'Molimo vas, odaberite auta za rezervaciju.';
@@ -540,31 +625,31 @@
                     // Sakrij poruku ako ima auta u korpi
                     greskaElement.style.display = 'none';
                 }
-                
+
                 // Prikazivanje toasta
                 toast.classList.add('show');
-                
+
                 // Zatvoranje popup
                 document.getElementById('popupOverlay').style.display = 'none';
                 document.getElementById('popupModal').style.display = 'none';
-                
+
                 // ciscenje korpe i liste nakon rezervacije
                 korpa.length = 0;
                 azurirajKosaricu();
                 document.getElementById('popupLista').innerHTML = '';
                 document.getElementById('ukupnaCijena').innerText = '0KM';
-                
+
                 setTimeout(() => {
                     toast.classList.remove('show');
                 }, 5000);
             });
 
-            
+
             document.getElementById('closePopup').addEventListener('click', function () {
                 document.getElementById('popupOverlay').style.display = 'none';
                 document.getElementById('popupModal').style.display = 'none';
             });
-            
+
             document.getElementById('popupOverlay').addEventListener('click', function () {
                 document.getElementById('popupOverlay').style.display = 'none';
                 document.getElementById('popupModal').style.display = 'none';

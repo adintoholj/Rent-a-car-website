@@ -23,6 +23,7 @@ namespace RentACarRWA.Controllers
             return Ok(cars);
         }
 
+
         [HttpPost("reserve")]
         public async Task<IActionResult> ReserveCar([FromBody] ReserveRequest request)
         {
@@ -43,6 +44,13 @@ namespace RentACarRWA.Controllers
             await _context.SaveChangesAsync();
             return Ok(car);
         }
+        [HttpGet("list")]
+        public IActionResult ListAll()
+        {
+            var cars = _context.Cars.ToList();
+            return Ok(cars);
+        }
+
     }
 
     public class ReserveRequest
